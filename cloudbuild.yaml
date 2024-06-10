@@ -7,7 +7,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/gcp-praticals/aryan-dot-net/web:latest']
 
-  	  # Deploy to Cloud Run--name-> CLI goodle cloud sdk kit 
+  	  # deploy
 	  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
 	    entrypoint: 'gcloud'
 	    args:

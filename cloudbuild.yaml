@@ -15,7 +15,7 @@ steps:
 	      - deploy
 	      - assessment
 	      - '--image'
-	      - 'us-central1-docker.pkg.dev/cloud-run-tutorial-424007/dotnet-api-artiii/web:latest'
+	      - 'us-central1-docker.pkg.dev/gcp-praticals/aryan-dot-net/web:latest'
 	      - '--region'
 	      - us-central1
 	options:

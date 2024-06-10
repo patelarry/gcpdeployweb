@@ -7,19 +7,20 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/gcp-praticals/aryan-dot-net/web:latest']
 
-  # # Trigger Cloud Deploy with a Unique Release Name
-  # - name: 'gcr.io/cloud-builders/gcloud'
-  #   args:
-  #     - 'deploy'
-  #     - 'releases'
-  #     - 'create'
-  #     - 'release-static2'  
-  #     - '--delivery-pipeline=dev'
-  #     - '--region=us-central1'
-  #     - '--skaffold-file=skaffold.yaml'
-  #     - '--images=web=us-central1-docker.pkg.dev/cloud-run-tutorial-424007/new-web-repo-doc/web:latest'
-  #     - '--annotations=commitSha=$COMMIT_SHA'
-  #     - '--annotations=buildId=$BUILD_ID'
+  	  # Deploy to Cloud Run--name-> CLI goodle cloud sdk kit 
+	  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+	    entrypoint: 'gcloud'
+	    args:
+	      - run
+	      - deploy
+	      - assessment
+	      - '--image'
+	      - 'us-central1-docker.pkg.dev/cloud-run-tutorial-424007/dotnet-api-artiii/web:latest'
+	      - '--region'
+	      - us-central1
+	options:
+	  logging: CLOUD_LOGGING_ONLY
+
 
 options:
   logging: CLOUD_LOGGING_ONLY

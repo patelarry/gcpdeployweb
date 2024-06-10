@@ -1,13 +1,22 @@
-steps:
-  # Build
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/gcp-praticals/aryan-dot-net/web:latest', '.']
 
-  # Push
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/gcp-praticals/aryan-dot-net/web:latest']
 
-  	  # deploy
+
+	steps:
+	  # Build the Docker image--Image of docker file
+	  - name: 'gcr.io/cloud-builders/docker'
+	    args:
+	      - build
+	      - '-t'
+	      - 'us-central1-docker.pkg.dev/gcp-praticals/aryan-dot-net/web:latest'  
+	      - '.'
+ 
+	  # Push the Docker image to Artifact Registry
+	  - name: 'gcr.io/cloud-builders/docker'
+	    args:
+	      - push
+	      - 'us-central1-docker.pkg.dev/gcp-praticals/aryan-dot-net/web:latest'
+ 
+	  # Deploy to Cloud Run--name-> CLI goodle cloud sdk kit 
 	  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
 	    entrypoint: 'gcloud'
 	    args:
@@ -21,10 +30,3 @@ steps:
 	options:
 	  logging: CLOUD_LOGGING_ONLY
 
-
-options:
-  logging: CLOUD_LOGGING_ONLY
-
-substitutions:
-  _COMMIT_SHA: $COMMIT_SHA
-  _BUILD_ID: $BUILD_ID
